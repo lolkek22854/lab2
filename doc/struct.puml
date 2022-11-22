@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+left to right direction
+
+package utils {
+    abstract class Entity{
+        name
+        getName()
+        initiate()
+    }
+    interface MirrorInterface {
+        reflect()
+    }
+    interface PersonInterface {
+        isSitting()
+        isDancing()
+        isEating()
+        isLooking()
+    }
+    interface FoodInterface{
+        eated()
+    }
+    enum Reflection{
+        CROOKED
+        NORMAL
+        FLATTENED
+        WIDE
+    }
+}
+
+package core{
+    class Person extends Entity implements PersonInterface{
+        sitting
+        eating
+        dancing
+        looking
+        eat()
+        look()
+        dance()
+        laugh()
+    }
+    class Table extends Entity
+    class Music extends Entity {
+     play()
+    }
+    class Food extends Entity implements FoodInterface
+    class Drink extends Food
+    class Mirror extends Entity implements MirrorInterface
+    class Waiter extends Person{
+        bringFood()
+        run()
+    }
+}
+@enduml
+'Я понимаю текст примерно так: я выделяю 7 сущностей, которые собираюсь реализовать в виде классов:
+класс еды Food
+клаcс напитка Drink
+класс Человека Person
+человек может смотреть, есть, танцевать и сидеть
+класс официанта Waiter
+официант может носить еду и бегать
+класс музыки Music
+музыка может играть(удивительно)
+И класс стола, где надо сидеть Table
+
+при этом класс официанта наследуется от класса человека
+и класс напитка наследуется от класса еды
+
+все объекты наследуются от абстрактного класса Entity, который содержит поле имени сущности, метод создания сущности и метод взаимодействия с именем сущности
+для взаимодействия с классами предусмотрены следующие интерфейсы:
+FoodInterface - взаимодействия с едой (еда естся)
+PersonInterface - взаимодействия с полями класса Person
+взаимодействует с полями sitting eating looking dancing
+MirrorInterface - взаимодействия с зеркалом - зеркало отражает и возвращает какое-либо отражение
+для типа отражений определен ENUM Reflection, содержащий типы отражений
+
