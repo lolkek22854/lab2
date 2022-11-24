@@ -16,6 +16,7 @@ left to right direction
     }
     interface Eatable{
         + eated(name : String)
+        + getCalories() : int
     }
     enum ReflectionType{
         CROOKED
@@ -23,6 +24,10 @@ left to right direction
         FLATTENED
         WIDE
     }
+    enum Sex{
+            MALE
+            FEMAL
+        }
 '}
 
 'package core{
@@ -46,15 +51,22 @@ left to right direction
      + getTitle() : String
     }
     class Food implements Eatable{
+    - calories : int
         - name : String
     }
     class Drink implements Eatable {
+        - calories : int
         - name : String
     }
     class Mirror{
-    # reflect() : ReflectionType
+    + reflect() : ReflectionType
     }
     class Shorty extends Character{
+            - static maxCalories : int
+            - sex : Sex
+            - isFat : bool
+            - totalCalories : int
+            - keepsFit : bool
             + eat()
             + look(mirror: Mirror)
             + dance(music : Music)
@@ -74,6 +86,7 @@ left to right direction
     Mirror --> Shorty
     Table --> Shorty
     Tray --> Waiter
+    Sex --* Shorty
 
 '}
 @enduml

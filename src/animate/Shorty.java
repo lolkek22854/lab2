@@ -9,7 +9,7 @@ import utils.ReflectionType;
 import utils.Sex;
 
 public class Shorty extends Character {
-    static int maxCalories = 600;
+    private static int maxCalories = 600;
     private Table table;
     private int totalCalories = 0;
     private Sex sex; // sex == пол (ламинат, паркет итд)
