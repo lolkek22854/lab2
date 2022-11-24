@@ -1,7 +1,7 @@
-package core;
+package inanimate;
 
-import utils.Eatable;
-import utils.FoodContainer;
+import interfaces.Eatable;
+import interfaces.FoodContainer;
 
 //import javax.lang.model.type.NullType;
 import java.util.Arrays;

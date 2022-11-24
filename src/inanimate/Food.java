@@ -1,17 +1,19 @@
-package core;
+package inanimate;
 
-import utils.Eatable;
+import interfaces.Eatable;
 
 import java.util.Objects;
 
 public class Food implements Eatable {
     //    private int calories;
     private String name;
-
-    public Food(String name) {
+    private int calories;
+    public Food(String name, int calories) {
         this.name = name;
+        this.calories = calories;
     }
-
+    @Override
+    public int getCalories(){return this.calories;}
     @Override
     public void eated(String user) {
         System.out.println(user + " поедает " + name);

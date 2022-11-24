@@ -1,6 +1,8 @@
-package core;
+package animate;
 
-import utils.Character;
+import inanimate.Table;
+import inanimate.Tray;
+import core.Character;
 
 public class Waiter extends Character {
     private Tray tray;

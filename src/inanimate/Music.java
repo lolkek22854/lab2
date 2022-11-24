@@ -1,4 +1,4 @@
-package core;
+package inanimate;
 
 import java.util.Objects;
 

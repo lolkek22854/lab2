@@ -51,7 +51,7 @@ link Tray to Waiter--><g id="link_Tray_Waiter"><path codeLine="72" d="M843.51,26
     }
 '}
 
-'package core{
+'package inanimate{
     class Table implements FoodContainer{
         - food[] : Eatable
         + eatFood(food : Eatable )

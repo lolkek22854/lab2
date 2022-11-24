@@ -1,7 +1,7 @@
-package core;
+package inanimate;
 
-import utils.Eatable;
-import utils.FoodContainer;
+import interfaces.Eatable;
+import interfaces.FoodContainer;
 
 import java.util.EmptyStackException;
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class Table implements FoodContainer {
     private Stack<Eatable> foodContainer = new Stack<>();
 
     public boolean hasFood(){
-        return foodContainer.isEmpty();
+        return !foodContainer.isEmpty();
     }
 
     public Eatable eatFood() {
