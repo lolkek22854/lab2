@@ -10,7 +10,7 @@ import utils.*;
 
 public class Main {
     public static void main(String[] args) {
-        Shorty pers1 = new Shorty("Пукич", 18);
+        Shorty pers1 = new Shorty("Паша", 18);
         Waiter waiter = new Waiter("Дмитрий Лянгузов", 18);
         Mirror mirror = new Mirror();
         Table table1 = new Table();
