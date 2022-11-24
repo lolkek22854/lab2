@@ -27,6 +27,12 @@ public class Main {
                 new Food("Ананас"),
                 new Drink("Квас"),
         });
+        tray2.putFood(new Eatable[]{
+                new Food("Чезбарг"),
+                new Food("Картошечка"),
+                new Food("Ананас"),
+                new Drink("Квас"),
+        });
         waiter.takeTray(tray1);
         waiter.run();
         waiter.unload(table1);

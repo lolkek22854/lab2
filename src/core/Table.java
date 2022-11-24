@@ -4,6 +4,7 @@ import utils.Eatable;
 import utils.FoodContainer;
 
 import java.util.EmptyStackException;
+import java.util.Objects;
 import java.util.Stack;
 
 public class Table implements FoodContainer {
@@ -39,8 +40,21 @@ public class Table implements FoodContainer {
         Eatable[] empty = {};
         return empty;
     }
-
+    @Override
     public String toString() {
         return "Поднос";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Table table = (Table) o;
+        return Objects.equals(foodContainer, table.foodContainer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(foodContainer);
     }
 }
