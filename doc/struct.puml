@@ -5,8 +5,8 @@ left to right direction
 
 'package utils {
     interface FoodContainer{
-        + putFood(food : Eatable )
-        + removeFood() : Eatable
+        + putFood(food : Eatable[])
+        + removeFood() : Eatable[]
     }
     abstract class Character {
         - name : String
@@ -15,7 +15,7 @@ left to right direction
         + getAge() : int
     }
     interface Eatable{
-        + eated()
+        + eated(name : String)
     }
     enum ReflectionType{
         CROOKED
@@ -27,47 +27,50 @@ left to right direction
 
 'package core{
     class Table implements FoodContainer{
+        - foodContainer : Eatable[]
         - food[] : Eatable
-        + eatFood(food : Eatable )
+        + hasFood() : bool
+        + eatFood()
     }
     class Tray implements FoodContainer{
+        - containsFood : bool
+        - foodContainer : Eatable[]
         - food[] : Eatable
     }
     class Music {
      - title : String
+     - isPlaying : bool
      + play()
+     + stop()
+     + isPlaying() : bool
      + getTitle() : String
     }
     class Food implements Eatable{
-        - isSweet : bool
         - name : String
     }
     class Drink implements Eatable {
         - name : String
-        - calories : int
     }
     class Mirror{
     # reflect() : ReflectionType
     }
     class Shorty extends Character{
-            - sitting : bool
-            - eating : bool
-            - dancing : bool
-            - looking : bool
-            + eat(food : Eatable)
+            + eat()
             + look(mirror: Mirror)
             + dance(music : Music)
             + laugh()
             + seat(table : Table)
         }
     class Waiter extends Character{
-        + takeTray(Tray tray)
+        + takeTray(tray : Tray)
         + run()
     }
     ReflectionType --* Mirror
     Music --> Shorty
     Eatable --> Waiter
     Eatable --> Shorty
+    Eatable --* Tray
+    Eatable --* Table
     Mirror --> Shorty
     Table --> Shorty
     Tray --> Waiter
