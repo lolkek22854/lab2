@@ -81,8 +81,8 @@ left to right direction
     Music --> Shorty
     Eatable --> Waiter
     Eatable --> Shorty
-    Eatable --* Tray
-    Eatable --* Table
+    Eatable --# Tray
+    Eatable --# Table
     Mirror --> Shorty
     Table --> Shorty
     Tray --> Waiter

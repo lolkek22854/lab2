@@ -61,6 +61,5 @@ public class Main {
         pers1.dance(ostrov);
         pers2.dance(ostrov);
         ostrov.stop();
-
     }
 }
