@@ -23,6 +23,7 @@ exception EmptyTableException
 exception FatManException
 exception SadManException
 exception NotEnoughMoneyException
+exception AgeException
 enum ReflectionType{
     CROOKED
     NORMAL
@@ -130,6 +131,22 @@ Sex --* Shorty
 Product --* Shorty
 Shop --> Shorty
 Dog --> Shorty
+Amusement --> Shorty
+
+class Muzzle{
+    -color : String
+}
+Muzzle --* Dog
+
+class SalaryGenerator{
+    getMoney(p : Shorty) : int
+}
+SalaryGenerator --* Shorty
+
+class Product.Food extends Product implements Eatable{
+-calories : int
+}
+class Product.Uneatable extends Product
 
 '}
 @enduml
