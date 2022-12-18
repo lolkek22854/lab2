@@ -4,89 +4,132 @@
 left to right direction
 
 'package utils {
-    interface FoodContainer{
-        + putFood(food : Eatable[])
-        + removeFood() : Eatable[]
+interface FoodContainer{
+    + putFood(food : Eatable[])
+    + removeFood() : Eatable[]
+}
+abstract class Character {
+    - name : String
+    - age : int
+    + getName() : String
+    + getAge() : int
+}
+interface Eatable{
+    + eated(name : String)
+    + getCalories() : int
+}
+
+exception EmptyTableException
+exception FatManException
+exception SadManException
+exception NotEnoughMoneyException
+enum ReflectionType{
+    CROOKED
+    NORMAL
+    FLATTENED
+    WIDE
+}
+enum Sex{
+        MALE
+        FEMALE
     }
-    abstract class Character {
-        - name : String
-        - age : int
-        + getName() : String
-        + getAge() : int
-    }
-    interface Eatable{
-        + eated(name : String)
-        + getCalories() : int
-    }
-    enum ReflectionType{
-        CROOKED
-        NORMAL
-        FLATTENED
-        WIDE
-    }
-    enum Sex{
-            MALE
-            FEMAL
-        }
 '}
 
 'package core{
-    class Table implements FoodContainer{
-        - foodContainer : Eatable[]
-        - food[] : Eatable
-        + hasFood() : bool
-        + eatFood()
-    }
-    class Tray implements FoodContainer{
-        - containsFood : bool
-        - foodContainer : Eatable[]
-        - food[] : Eatable
-    }
-    class Music {
-     - title : String
-     - isPlaying : bool
-     + play()
-     + stop()
-     + isPlaying() : bool
-     + getTitle() : String
-    }
-    class Food implements Eatable{
+class Product{
+    -name : String
+    -price : int
+    +getPrice() : int
+}
+class Shop{
+    -name : String
+    -isOpen : bool
+    -catalog : Product[]
+    +isOpen() : bool
+    +addToCatalog(Products : Product[])
+}
+class Dog implements Scary{
+    -name : String
+    +bark()
+}
+class Amusement{
+    -name : String
+    -makesHappy : bool
+    +makesHappy() : bool
+}
+class Table implements FoodContainer{
+    - foodContainer : Eatable[]
+    - food[] : Eatable
+    + hasFood() : bool
+    + eatFood()
+}
+class Tray implements FoodContainer{
+    - containsFood : bool
+    - foodContainer : Eatable[]
+    - food[] : Eatable
+}
+interface Scary{
+    isScary() : bool
+}
+class Music {
+ - title : String
+ - isPlaying : bool
+ + play()
+ + stop()
+ + isPlaying() : bool
+ + getTitle() : String
+}
+class Food implements Eatable{
+- calories : int
+    - name : String
+}
+class Drink implements Eatable {
     - calories : int
-        - name : String
+    - name : String
+}
+class Mirror{
++ reflect() : ReflectionType
+}
+class Shorty extends Character{
+        - static maxCalories : int
+        - sex : Sex
+        - shop : Shop
+        - money : int
+        - isFat : bool
+        - totalCalories : int
+        - isHungry : bool
+        - keepsFit : bool
+        - isScared : bool
+        + eat()
+        + getScared(obj : Scary)
+        + isScared() : bool
+        + isHungry() : bool
+        + look(mirror: Mirror)
+        + dance(music : Music)
+        + laugh()
+        + seat(table : Table)
+        + enter(shop : shop)
+        + leaveShop()
+        + buyProduct()
+        + useAmusement(amusement : Amusement)
     }
-    class Drink implements Eatable {
-        - calories : int
-        - name : String
-    }
-    class Mirror{
-    + reflect() : ReflectionType
-    }
-    class Shorty extends Character{
-            - static maxCalories : int
-            - sex : Sex
-            - isFat : bool
-            - totalCalories : int
-            - keepsFit : bool
-            + eat()
-            + look(mirror: Mirror)
-            + dance(music : Music)
-            + laugh()
-            + seat(table : Table)
-        }
-    class Waiter extends Character{
-        + takeTray(tray : Tray)
-        + run()
-    }
-    ReflectionType --* Mirror
-    Music --> Shorty
-    Eatable --> Waiter
-    Eatable --> Shorty
-    Eatable --* Tray
-    Eatable --* Table
-    Mirror --> Shorty
-    Table --> Shorty
-    Tray --> Waiter
-    Sex --* Shorty
+class Waiter extends Character{
+    + takeTray(tray : Tray)
+    + run()
+}
+ReflectionType --* Mirror
+Music --> Shorty
+Eatable --> Waiter
+Eatable --> Shorty
+Eatable --* Tray
+Eatable --* Table
+Mirror --> Shorty
+Table --> Shorty
+Tray --> Waiter
+Sex --* Shorty
+Product --* Shorty
+Shop --> Shorty
+Dog --> Shorty
 
 '}
 @enduml

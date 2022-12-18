@@ -6,12 +6,17 @@
 // Официанты и официантки бегали с подносами между столиками и приносили желающим разные кушанья.
 
 import animate.*;
+import exceptions.AgeException;
+import exceptions.FatManException;
+import exceptions.NotEnoughMoneyException;
+import exceptions.SadManException;
 import inanimate.*;
 import interfaces.Eatable;
+import interfaces.Scary;
 import utils.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AgeException {
         Shorty pers1 = new Shorty("Паша", 18, Sex.MALE, false);
         Waiter waiter = new Waiter("Дмитрий Лянгузов", 18);
         Shorty pers2 = new Shorty("Женщина1", 54, Sex.FEMALE);
@@ -27,15 +32,20 @@ public class Main {
         pers1.seat(table1);
         tray1.putFood(new Eatable[]{
                 new Food("Чезбарг", 200),
-                new Food("Картошечка",150),
-                new Food("Ананас",400),
-                new Drink("Квас"),
+                new Food("Картошечка", 150),
+                new Food("Ананас", 400),
+                new Drink("Пивной напиток")
         });
         tray2.putFood(new Eatable[]{
                 new Food("Чезбарг", 500),
                 new Food("Картошечка", 400),
-                new Food("Ананас",200),
-                new Drink("Квас"),
+                new Food("Ананас", 200),
+                new Drink("Квас") {
+                    @Override
+                    public int getCalories() {
+                        return 20;
+                    }
+                },
         });
         waiter.takeTray(tray1);
         waiter.run();
@@ -58,9 +68,41 @@ public class Main {
         pers2.eat();
 
         ostrov.play();
-        pers1.dance(ostrov);
-        pers2.dance(ostrov);
+        try {
+            pers1.dance(ostrov);
+        } catch (FatManException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            pers2.dance(ostrov);
+        } catch (FatManException e) {
+            System.out.println(e.getMessage());
+        }
         ostrov.stop();
 
+        // тут вот начинается лаба4 (основная часть, тк чуть выше на 41 строке я как бы создал анонимный класс)
+//        Shorty pers3 = new Shorty("Пукич", -1, Sex.MALE);
+        Dog dog1 = new Dog("Бобик");
+        Amusement rollerCoaster = new Amusement("качели", true);
+        Shop lenta = new Shop("Гипер Лента");
+        lenta.addToCatalog(new Product[]{
+                new Product.Food("Чипсеки", 89, 400),
+                new Product.Food("Сухареки", 29, 400),
+                new Product.Food("Чоколадка", 189, 500),
+                new Product.Uneatable("Новый МакБук 16 M1", 100000),
+        });
+        dog1.bark();
+        dog1.getMuzzle();
+        pers1.getScared(dog1);
+        pers1.useAmusement(rollerCoaster);
+        pers1.takeMoney();
+        pers1.enterShop(lenta);
+        for (int i = 0; i < 3; i++) {
+            try {
+                pers1.buyProduct();
+            } catch (NotEnoughMoneyException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

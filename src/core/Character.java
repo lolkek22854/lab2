@@ -1,11 +1,16 @@
 package core;
 
+import exceptions.AgeException;
+
 import java.util.Objects;
 
 public abstract class Character {
     protected String name;
     protected int age;
-    public Character(String name, int age){
+    public Character(String name, int age) throws AgeException{
+        if( age <0){
+            throw new AgeException("возраст должен быть положительным числом");
+        }
         System.out.println("Персонаж "+ name+ " появляется");
         this.age = age;
         this.name = name;

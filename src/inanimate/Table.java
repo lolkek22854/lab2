@@ -1,5 +1,6 @@
 package inanimate;
 
+import exceptions.EmptyTableException;
 import interfaces.Eatable;
 import interfaces.FoodContainer;
 
@@ -16,12 +17,11 @@ public class Table implements FoodContainer {
         return !foodContainer.isEmpty();
     }
 
-    public Eatable eatFood() {
+    public Eatable eatFood() throws EmptyTableException{
         try {
             return foodContainer.pop();
         } catch (EmptyStackException e){
-            System.out.println("Стол пустой! кушать нечего!");
-            return null;
+            throw new EmptyTableException();
         }
     }
 
